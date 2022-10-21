@@ -1,23 +1,10 @@
 import sqlite3
-# db = sqlite3.connect('test.db')
-# sql = db.cursor()
-#
-# sql.execute("""CREATE TABLE IF NOT EXISTS materials(
-#         id integer primary key autoincrement,
-#         name text not null
-#     ) """)
-# sql.execute(""" insert into materials(name) values('ДСП')  """)
-# sql.execute(""" select * from materials """)
-# rows = sql.fetchall()
-# for row in rows:
-#     print(row)
-# db.close()
 
 # region Create database
 # --
 # -- База данных: `industrial_wood`
 # --
-db = sqlite3.connect('industrial_wood')
+db = sqlite3.connect('industrial_wood.db')
 sql = db.cursor()
 # --
 # -- Структура таблицы `types`
@@ -57,8 +44,21 @@ sql.execute("""CREATE TABLE IF NOT EXISTS `customer_list` (
     );""")
 # endregion
 
-sql.execute("SELECT name FROM sqlite_master WHERE type='table';")
-tables = sql.fetchall()
-for line in tables:
-    print(line)
+# sql.execute("SELECT name FROM sqlite_master WHERE type='table';")
+# tables = sql.fetchall()
+# for line in tables:
+#     print(line)
+
+# sql.execute("""INSERT INTO types(type) VALUES ('Брус'), ('Брусок'), ('Доска'), ('Штакетник'), ('Шпала'), ('Обапол'),
+#                                               ('Горбыль'), ('Конструкционные'), ('Торцованные'), ('Неторцованные')""")
+
+# sql.execute("""INSERT INTO supliers(company, location, type_id) VALUES ('SIBWD', 'Россия', '1'), ('SIBWD', 'Россия', '3'), ('SIBWD', 'Россия', '5'),
+#                                                                        ('CALAMBER', 'Канада', '2'), ('CALAMBER', 'Канада', '6'), ('USWOOD', 'США', '7'),
+#                                                                        ('USWOOD', 'США', '2'), ('USWOOD', 'США', '1'), ('SIBWD', 'Россия', '7'),
+#                                                                        ('SIBWD', 'Россия', '2')""")
+
+sql.execute("""""")
+
+db.commit()
+
 sql.close()
