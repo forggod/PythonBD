@@ -57,5 +57,8 @@ sql.execute("""CREATE TABLE IF NOT EXISTS `customer_list` (
     );""")
 # endregion
 
-
+sql.execute("SELECT name FROM sqlite_master WHERE type='table';")
+tables = sql.fetchall()
+for line in tables:
+    print(line)
 sql.close()
