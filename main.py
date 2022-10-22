@@ -51,6 +51,12 @@ for line in tables:
     print(*line)
 print()
 
+sql.execute("SELECT customer, type, count FROM customer_list, types,sales WHERE sales.id = customer_list.customer_id and customer_list.type_id = types.id order by customer")
+tables = sql.fetchall()
+for line in tables:
+    print(*line)
+print()
+
 # sql.execute("SELECT customer, status, type, count, company, location FROM types, supliers, sales, "
 #             "customer_list WHERE sales.id = customer_list.customer_id and customer_list.type_id = types.id;")
 # tables = sql.fetchall()
