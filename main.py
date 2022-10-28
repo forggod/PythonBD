@@ -118,14 +118,35 @@ print('Order and suppliers for choose', 'customer|type|supplier|count|current_co
 print_qsl_line(sql)
 # endregion
 
-## TODO: Updates and Deletes
-
 # region Updates
+sql.execute("""UPDATE sales SET status = 1 WHERE customer = 'IP_01'""")
+sql.execute("""UPDATE sales SET status = 1 WHERE customer = 'IP_04'""")
+sql.execute("""UPDATE sales SET status = 1 WHERE customer = 'IP_08'""")
 
+sql.execute("""UPDATE storage SET current_count = 100000 WHERE type_id = 1""")
+sql.execute("""UPDATE storage SET current_count = 75000 WHERE type_id = 5""")
+sql.execute("""UPDATE storage SET current_count = 50000 WHERE type_id = 9""")
+
+sql.execute("""UPDATE customer_list SET count = 5000 WHERE customer_id = 1""")
+sql.execute("""UPDATE customer_list SET count = 2500 WHERE customer_id = 7""")
+sql.execute("""UPDATE customer_list SET count = 1500 WHERE customer_id = 10""")
+
+sql.execute("""UPDATE sales SET customer = 'UGInvest' WHERE customer = 'IP_05'""")
+db.commit()
 # endregion
 
 # region Deletes
-
+sql.execute("""DELETE FROM customer_list WHERE customer_id = 1 OR customer_id = 4 OR customer_id = 8""")
+sql.execute("""DELETE FROM types WHERE type = 'Торцованные'""")
+sql.execute("""DELETE FROM types WHERE type = 'Неторцованные'""")
+sql.execute("""DELETE FROM supliers WHERE location = 'Канада'""")
+sql.execute("""DELETE FROM supliers WHERE location = 'Россия' AND type_id = 7 OR type_id = 2""")
+sql.execute("""DELETE FROM sales WHERE customer = 'IP_07'""")
+sql.execute("""DELETE FROM sales WHERE customer = 'IP_08' AND status = 1""")
+sql.execute("""DELETE FROM storage WHERE current_count = 40000""")
+sql.execute("""DELETE FROM storage WHERE type_id = 10""")
+sql.execute("""DELETE FROM storage WHERE type_id = 8 OR type_id = 9""")
+db.commit()
 # endregion
 
 sql.close()
